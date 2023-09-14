@@ -112,6 +112,14 @@ func multiplos_2(lim int) int {
 	return acu
 }
 
+func multiplos_3(lim int) int {
+	n_3 := (lim - 1) / 3
+	n_5 := (lim - 1) / 5
+	acu_3 := ((n_3 * (n_3 + 1)) / 2) * 3
+	acu_5 := ((n_5 * (n_5 + 1)) / 2) * 5
+	return acu_3 + acu_5
+}
+
 func filter_str_rune_bigger_1_byte_2(s string) string {
 	rune_mapper := func(r rune) rune {
 		accept_rune := rune_filter(r)
@@ -152,6 +160,7 @@ func main() {
 	// 5
 	fmt.Printf("La suma es %v\n", multiplos(1000000))
 	fmt.Printf("La suma es %v\n", multiplos_2(1000000))
+	fmt.Printf("La suma es %v\n", multiplos_3(1000000))
 	// 6
 	str_1 := "Hola 🗺 Que seas muy 🙋 para siempre"
 	fmt.Printf("In: %v\nOut: %v\n", str_1, filter_str_rune_bigger_1_byte(str_1))
