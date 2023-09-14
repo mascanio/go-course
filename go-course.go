@@ -57,6 +57,59 @@ func position(lat float64, long float64) string {
 	return "error"
 }
 
+const (
+	as = iota + 1
+	dos
+	tres
+	cuatro
+	cinco
+	seis
+	siete
+	ocho
+	nueve
+	diez = 10
+	jack
+	reina
+	rey
+)
+
+func blackjack(a int, b int) int {
+	if a+b+10 <= 21 {
+		// Promote as if present
+		if a == as {
+			return b + 11
+		}
+		if b == as {
+			return a + 11
+		}
+	}
+	return a + b
+}
+
+func multiplos(lim int) int {
+	acu := 0
+	for n := 1; n*3 < lim; n++ {
+		acu += n * 3
+		if n*5 < lim {
+			acu += n * 5
+		}
+	}
+	return acu
+}
+
+func multiplos_2(lim int) int {
+	acu := 0
+	for i := 0; i < lim; i++ {
+		if i%3 == 0 {
+			acu += i
+		}
+		if i%5 == 0 {
+			acu += i
+		}
+	}
+	return acu
+}
+
 func main() {
 	// 1
 	celsius := 37.3
@@ -65,4 +118,11 @@ func main() {
 	fmt.Printf("%v\n", is_square_triangle(5, 3, 4))
 	// 3
 	fmt.Printf("%v\n", position(-1, -11))
+	// 4
+	fmt.Printf("El valor final es %v\n", blackjack(as, rey))
+	fmt.Printf("El valor final es %v\n", blackjack(ocho, rey))
+	fmt.Printf("El valor final es %v\n", blackjack(as, as))
+	// 5
+	fmt.Printf("La suma es %v\n", multiplos(1000000))
+	fmt.Printf("La suma es %v\n", multiplos_2(1000000))
 }
