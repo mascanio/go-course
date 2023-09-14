@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"math"
+	"strings"
+	"unicode/utf8"
 )
 
 func celsius_to_fahrenheit(celsius float64) float64 {
@@ -110,6 +112,31 @@ func multiplos_2(lim int) int {
 	return acu
 }
 
+func filter_str_rune_bigger_1_byte_2(s string) string {
+	rune_mapper := func(r rune) rune {
+		accept_rune := rune_filter(r)
+		if accept_rune {
+			return r
+		}
+		return -1
+	}
+	return strings.Map(rune_mapper, s)
+}
+func filter_str_rune_bigger_1_byte(s string) string {
+	var r string
+	for _, rune := range s {
+		if rune_filter(rune) {
+			r = r + string(rune)
+		}
+	}
+
+	return r
+}
+
+func rune_filter(r rune) bool {
+	return utf8.RuneLen(r) > 1
+}
+
 func main() {
 	// 1
 	celsius := 37.3
@@ -125,4 +152,8 @@ func main() {
 	// 5
 	fmt.Printf("La suma es %v\n", multiplos(1000000))
 	fmt.Printf("La suma es %v\n", multiplos_2(1000000))
+	// 6
+	str_1 := "Hola 🗺 Que seas muy 🙋 para siempre"
+	fmt.Printf("In: %v\nOut: %v\n", str_1, filter_str_rune_bigger_1_byte(str_1))
+	fmt.Printf("In: %v\nOut: %v\n", str_1, filter_str_rune_bigger_1_byte_2(str_1))
 }
