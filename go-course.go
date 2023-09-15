@@ -102,10 +102,7 @@ func multiplos(lim int) int {
 func multiplos_2(lim int) int {
 	acu := 0
 	for i := 0; i < lim; i++ {
-		if i%3 == 0 {
-			acu += i
-		}
-		if i%5 == 0 {
+		if i%3 == 0 || i%5 == 0 {
 			acu += i
 		}
 	}
@@ -115,9 +112,11 @@ func multiplos_2(lim int) int {
 func multiplos_3(lim int) int {
 	n_3 := (lim - 1) / 3
 	n_5 := (lim - 1) / 5
+	n_15 := (lim - 1) / 15
 	acu_3 := ((n_3 * (n_3 + 1)) / 2) * 3
 	acu_5 := ((n_5 * (n_5 + 1)) / 2) * 5
-	return acu_3 + acu_5
+	acu_15 := ((n_15 * (n_15 + 1)) / 2) * 15
+	return acu_3 + acu_5 - acu_15
 }
 
 func filter_str_rune_bigger_1_byte_2(s string) string {
